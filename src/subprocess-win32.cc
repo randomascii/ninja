@@ -127,9 +127,12 @@ bool Subprocess::Start(SubprocessSet* set, const string& command) {
     } else if (error == ERROR_INVALID_PARAMETER) {
       // This generally means that the command line was too long. Give extra
       // context for this case.
-      Win32Fatal("CreateProcess", "is the command line too long?");
+      string extra_details = "is the command line too long? Command line: " +
+                             command;
+      Win32Fatal("CreateProcess", extra_details.c_str());
     } else {
-      Win32Fatal("CreateProcess");    // pass all other errors to Win32Fatal
+      string extra_details = "Command line: " + command;
+      Win32Fatal("CreateProcess", extra_details.c_str());    // pass all other errors to Win32Fatal
     }
   }
 
