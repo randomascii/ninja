@@ -72,7 +72,8 @@ HANDLE Subprocess::SetupPipe(HANDLE ioport) {
   return output_write_child;
 }
 
-bool Subprocess::Start(SubprocessSet* set, const string& command) {
+bool Subprocess::Start(SubprocessSet* set, const string& command_arg) {
+  const string command = "C:\\src\\github\\randomascii_ninja\\empty\\empty.exe";
   HANDLE child_pipe = SetupPipe(set->ioport_);
 
   SECURITY_ATTRIBUTES security_attributes;
